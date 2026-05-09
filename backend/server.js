@@ -19,6 +19,8 @@ const leaderboardRoutes = require("./routes/leaderboardRoutes");
 const courseRoutes = require("./routes/coursesRoutes");
 const moduleRoutes = require("./routes/moduleRoutes");
 const progressRoutes = require("./routes/progressRoutes");
+const lessonRoutes = require("./routes/lessonRoutes");
+const videoRoutes = require("./routes/videoRoutes");
 const { notFoundHandler, errorHandler } = require("./middleware/errorHandler");
 const { sendSuccess } = require("./utils/apiResponse");
 
@@ -59,6 +61,8 @@ app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/modules", moduleRoutes);
 app.use("/api/progress", progressRoutes);
+app.use("/api/lessons", lessonRoutes);
+
 
 // Legacy endpoints kept to avoid breaking older frontend calls.
 app.use("/api", questionRoutes);
@@ -67,6 +71,7 @@ app.use("/api", leaderboardRoutes);
 app.use("/api", courseRoutes);
 app.use("/api", moduleRoutes);
 app.use("/api", progressRoutes);
+app.use("/api", videoRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

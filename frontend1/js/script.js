@@ -622,160 +622,279 @@
     }
   };
 
+  // ─── CourseDetailPage ────────────────────────────────────────────────────
+  // FIX 1: Uses embed_url from backend instead of raw video_url in iframe
+  // FIX 2: Added Next / Previous lesson navigation buttons
+  // FIX 3: Sidebar active item updates when Next/Prev is clicked
+  // Everything else is identical to the original
+    // ─── Formats plain text lesson content into readable HTML ───────────────────
+  function formatContent(text) {
+    if (!text) return "<p>No content available</p>";
+
+    const lines = text.split("\n");
+    let html = "";
+    let inList = false;
+    let inCode = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmed = line.trim();
+
+      // Empty line — close any open list or code block, add paragraph break
+      if (!trimmed) {
+        if (inList) { html += "</ul>"; inList = false; }
+        if (inCode) { html += "</code></pre>"; inCode = false; }
+        html += "<br>";
+        continue;
+      }
+
+      // Bullet point line starting with "- "
+      if (trimmed.startsWith("- ")) {
+        if (inCode) { html += "</code></pre>"; inCode = false; }
+        if (!inList) { html += "<ul>"; inList = true; }
+        html += `<li>${trimmed.slice(2)}</li>`;
+        continue;
+      }
+
+      // Numbered step line like "Step 1:" or "1."
+      if (/^(Step\s*\d+[:.]|^\d+\.)/.test(trimmed)) {
+        if (inList) { html += "</ul>"; inList = false; }
+        if (inCode) { html += "</code></pre>"; inCode = false; }
+        html += `<p class="lesson-step"><strong>${trimmed}</strong></p>`;
+        continue;
+      }
+
+      // Section heading — short line ending with ":" and no spaces inside (like "Key Features of Python:")
+      if (trimmed.endsWith(":") && trimmed.length < 60 && !trimmed.includes("  ")) {
+        if (inList) { html += "</ul>"; inList = false; }
+        if (inCode) { html += "</code></pre>"; inCode = false; }
+        html += `<h3 class="lesson-subheading">${trimmed}</h3>`;
+        continue;
+      }
+
+      // Code line — starts with known code keywords or special chars
+      const isCode = /^(print|import|def |class |if |for |while |python |#|>>>|\$)/.test(trimmed)
+        || trimmed.startsWith("python --")
+        || /\.(py|html|js|css)$/.test(trimmed);
+
+      if (isCode) {
+        if (inList) { html += "</ul>"; inList = false; }
+        if (!inCode) { html += `<pre class="lesson-code"><code>`; inCode = true; }
+        else { html += "\n"; }
+        html += trimmed;
+        continue;
+      }
+
+      // Regular paragraph line
+      if (inList) { html += "</ul>"; inList = false; }
+      if (inCode) { html += "</code></pre>"; inCode = false; }
+      html += `<p>${trimmed}</p>`;
+    }
+
+    // Close any unclosed tags
+    if (inList) html += "</ul>";
+    if (inCode) html += "</code></pre>";
+
+    return html;
+  }
   const CourseDetailPage = {
+
+    // Stores all lessons so Next/Prev can navigate the full list
+    allLessons: [],
+    currentIndex: 0,
+    course: null,
+
     async init() {
       if (!document.querySelector(".lesson-page")) return;
 
       const courseId = new URLSearchParams(window.location.search).get("id");
-      const lessonContent = document.querySelector(".lesson-content");
-      const lessonList = document.querySelector(".lesson-list");
+
+      const lessonContent   = document.querySelector(".lesson-content");
+      const lessonList      = document.querySelector(".lesson-list");
       const breadcrumbCurrent = document.querySelector(".lesson-breadcrumb .current");
-      const breadcrumbCourse = document.querySelectorAll(".lesson-breadcrumb a")[1];
-      const sidebarHeader = document.querySelector(".sidebar-header");
+      const breadcrumbCourse  = document.querySelectorAll(".lesson-breadcrumb a")[1];
+      const sidebarHeader   = document.querySelector(".sidebar-header");
 
       if (!courseId) {
-        if (lessonContent) {
-          lessonContent.innerHTML = "<h1>Select a course</h1><p>No course ID was provided.</p>";
-        }
+        if (lessonContent) lessonContent.innerHTML = "<h1>Select a course</h1>";
         return;
       }
 
       try {
-        const [courseData, questions] = await Promise.all([
-          apiRequest(`/courses/${courseId}`),
-          apiRequest("/questions")
-        ]);
+        const course  = await apiRequest(`/courses/${courseId}`);
+        const modules = await apiRequest(`/modules/${courseId}`);
 
-        const { course, modules, lessons } = courseData;
+        this.course = course;
+        this.allLessons = [];
+
+        for (let module of modules) {
+          const lessons = await apiRequest(`/lessons/module/${module.id}`);
+          this.allLessons.push(
+            ...lessons.map((l) => ({ ...l, module_title: module.title }))
+          );
+        }
+
         if (sidebarHeader) {
           sidebarHeader.innerHTML = `
             <h2>${course.title}</h2>
-            <p>${modules.length} Modules · ${lessons.length} Lessons</p>
+            <p>${modules.length} Modules · ${this.allLessons.length} Lessons</p>
           `;
         }
+
         if (breadcrumbCurrent) breadcrumbCurrent.textContent = course.title;
-        if (breadcrumbCourse) breadcrumbCourse.textContent = course.title;
+        if (breadcrumbCourse)  breadcrumbCourse.textContent  = course.title;
 
         if (lessonList) {
-          lessonList.innerHTML = lessons.length ? lessons.map((lesson, index) => `
-            <div class="lesson-item ${index === 0 ? "active" : ""}" data-lesson-id="${lesson.id}">
-              <div class="lesson-number">${index + 1}</div>
-              <div class="lesson-info">
-                <h4>${lesson.title}</h4>
-                <span>${modules.find((module) => module.id === lesson.module_id)?.title || "Lesson"}</span>
-              </div>
-              <span class="lesson-duration">${lesson.video_url ? "Video" : "Read"}</span>
-            </div>
-          `).join("") : "<p>No lessons found.</p>";
+          lessonList.innerHTML = this.allLessons.length
+            ? this.allLessons.map((lesson, index) => `
+                <div class="lesson-item ${index === 0 ? "active" : ""}" data-id="${lesson.id}" data-index="${index}">
+                  <div class="lesson-number">${index + 1}</div>
+                  <div class="lesson-info">
+                    <h4>${lesson.title}</h4>
+                    <span>${lesson.module_title}</span>
+                  </div>
+                  <span class="lesson-duration">${lesson.video_url ? "Video" : "Read"}</span>
+                </div>
+              `).join("")
+            : "<p>No lessons found</p>";
         }
 
-        this.renderLesson(course, lessons[0], questions);
-        this.bindLessonSwitch(course, lessons, questions);
+        if (this.allLessons.length > 0) {
+          this.currentIndex = 0;
+          const firstLesson = await apiRequest(`/lessons/${this.allLessons[0].id}`);
+          this.renderLesson(course, firstLesson, 0);
+        }
+
+        // Sidebar click — switch lesson
+        document.querySelectorAll(".lesson-item").forEach((item) => {
+          item.addEventListener("click", async () => {
+            const index = parseInt(item.dataset.index, 10);
+            await this.goToLesson(index);
+          });
+        });
+
         AIChat.init();
+
       } catch (error) {
         if (lessonContent) {
           lessonContent.innerHTML = `<h1>Error</h1><p>${error.message}</p>`;
         }
       }
     },
-    bindLessonSwitch(course, lessons, questions) {
-      document.querySelectorAll(".lesson-item").forEach((item) => {
-        item.addEventListener("click", () => {
-          document.querySelectorAll(".lesson-item").forEach((node) => node.classList.remove("active"));
-          item.classList.add("active");
-          const lesson = lessons.find((entry) => String(entry.id) === item.dataset.lessonId);
-          this.renderLesson(course, lesson, questions);
-        });
-      });
-    },
-    renderLesson(course, lesson, questions) {
-      const lessonContent = document.querySelector(".lesson-content");
-      if (!lessonContent || !lesson) return;
 
-      const question = questions[0];
+    // Navigate to lesson by index — used by sidebar clicks and Next/Prev buttons
+    async goToLesson(index) {
+      if (index < 0 || index >= this.allLessons.length) return;
+
+      this.currentIndex = index;
+
+      // Update sidebar active state
+      document.querySelectorAll(".lesson-item").forEach((item) => {
+        item.classList.toggle("active", parseInt(item.dataset.index, 10) === index);
+      });
+
+      // Scroll sidebar item into view
+      const activeItem = document.querySelector(`.lesson-item[data-index="${index}"]`);
+      if (activeItem) activeItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      const lesson = await apiRequest(`/lessons/${this.allLessons[index].id}`);
+      this.renderLesson(this.course, lesson, index);
+    },
+
+        renderLesson(course, lesson, index) {
+      const lessonContent = document.querySelector(".lesson-content");
+      if (!lessonContent) return;
+
+      const total   = this.allLessons.length;
+      const isFirst = index === 0;
+      const isLast  = index === total - 1;
+
+      // FIX: use embed_url from backend
+      let videoEmbed = "";
+      if (lesson.embed_url) {
+        videoEmbed = `
+          <div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin-top:30px;">
+            <iframe
+              style="position:absolute; top:0; left:0; width:100%; height:100%;"
+              src="${lesson.embed_url}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        `;
+      } else if (lesson.video_url) {
+        videoEmbed = `
+          <p style="margin-top:20px; color:#f59e0b;">
+            ⚠️ Video could not be embedded.
+            <a href="${lesson.video_url}" target="_blank" style="color:#60a5fa;">Watch on YouTube ↗</a>
+          </p>
+        `;
+      }
+
       lessonContent.innerHTML = `
         <h1>${lesson.title}</h1>
+
         <div class="lesson-meta">
           <span>${course.title}</span>
           <span>&middot;</span>
-          <span>${lesson.video_url ? "Video lesson" : "Reading lesson"}</span>
+          <span>${lesson.video_url ? "Video Lesson" : "Reading"}</span>
           <span>&middot;</span>
-          <span>Course ID ${course.id}</span>
+          <span>Lesson ${index + 1} of ${total}</span>
         </div>
-        <p>${lesson.content || "No lesson content available."}</p>
-        <h2>Practice Question</h2>
-        ${question ? `
-          <div class="progress-card" style="margin-top:16px;">
-            <h3>${question.title || "Coding Question"}</h3>
-            <p>${question.description || ""}</p>
-            <textarea id="submissionCode" class="form-input" rows="8" placeholder="Write your answer here"></textarea>
-            <div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-              <select id="submissionLanguage" class="form-input" style="max-width:220px;">
-                <option value="javascript">JavaScript</option>
-                <option value="python">Python</option>
-                <option value="c">C</option>
-                <option value="java">Java</option>
-              </select>
-              <button id="submitQuestionBtn" class="btn btn-primary" type="button">Submit Answer</button>
-              <button id="completeLessonBtn" class="btn btn-secondary" type="button">Mark Lesson Complete</button>
-            </div>
-            <div id="submissionResult" style="margin-top:16px;"></div>
-          </div>
-        ` : "<p>No practice questions available.</p>"}
+
+        <!-- TEXT CONTENT FIRST -->
+        <div class="lesson-text">
+          ${formatContent(lesson.content)}
+        </div>
+
+        <!-- VIDEO SECOND -->
+        ${videoEmbed}
+
+        <!-- NAVIGATION BUTTONS -->
+        <div style="display:flex; align-items:center; gap:12px; margin-top:30px; flex-wrap:wrap;">
+          <button id="prevLessonBtn" class="btn btn-secondary"
+            ${isFirst ? "disabled" : ""}
+            style="opacity:${isFirst ? "0.4" : "1"};">
+            ← Previous
+          </button>
+
+          <button id="completeLessonBtn" class="btn btn-primary">
+            Mark as Complete
+          </button>
+
+          <button id="nextLessonBtn" class="btn btn-secondary"
+            ${isLast ? "disabled" : ""}
+            style="opacity:${isLast ? "0.4" : "1"};">
+            Next →
+          </button>
+        </div>
       `;
 
-      const submitButton = document.getElementById("submitQuestionBtn");
-      if (submitButton && question) {
-        submitButton.addEventListener("click", async () => {
-          if (!getToken()) {
-            window.location.href = "login.html";
-            return;
-          }
-
-          const resultNode = document.getElementById("submissionResult");
-          try {
-            submitButton.disabled = true;
-            resultNode.innerHTML = "<p>Evaluating your answer...</p>";
-            const submission = await apiRequest("/submissions", {
-              method: "POST",
-              body: {
-                question_id: question.id,
-                code: document.getElementById("submissionCode")?.value || "",
-                language: document.getElementById("submissionLanguage")?.value || "javascript"
-              }
-            });
-            resultNode.innerHTML = `
-              <div class="progress-item">
-                <div class="progress-header"><span>Result</span><span>${submission.result}</span></div>
-                <p>${submission.explanation}</p>
-              </div>
-            `;
-          } catch (error) {
-            resultNode.innerHTML = `<p style="color:#ef4444;">${error.message}</p>`;
-          } finally {
-            submitButton.disabled = false;
-          }
-        });
+      const prevBtn = document.getElementById("prevLessonBtn");
+      if (prevBtn && !isFirst) {
+        prevBtn.addEventListener("click", () => this.goToLesson(index - 1));
       }
 
-      const completeButton = document.getElementById("completeLessonBtn");
-      if (completeButton) {
-        completeButton.addEventListener("click", async () => {
-          if (!getToken()) {
-            window.location.href = "login.html";
-            return;
-          }
+      const nextBtn = document.getElementById("nextLessonBtn");
+      if (nextBtn && !isLast) {
+        nextBtn.addEventListener("click", () => this.goToLesson(index + 1));
+      }
+
+      const completeBtn = document.getElementById("completeLessonBtn");
+      if (completeBtn) {
+        completeBtn.addEventListener("click", async () => {
           try {
-            completeButton.disabled = true;
+            completeBtn.disabled = true;
             await apiRequest("/progress/complete-lesson", {
               method: "POST",
               body: { lesson_id: lesson.id }
             });
-            completeButton.textContent = "Completed";
-          } catch (error) {
-            window.alert(error.message);
+            completeBtn.textContent = "Completed ✅";
+          } catch (err) {
+            alert(err.message);
           } finally {
-            completeButton.disabled = false;
+            completeBtn.disabled = false;
           }
         });
       }

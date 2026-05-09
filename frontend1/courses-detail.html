@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,243 +8,85 @@
   <meta name="description" content="Learn coding with AI assistance on CodePath.">
   <title>Lesson - CodePath</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+
 <body>
+
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="logo">CodePath</a>
-      <div class="nav-links">
-        <a href="courses.html" class="nav-link">Courses</a>
-        <a href="index.html#about" class="nav-link">About Us</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.jpg" alt="">
+
+        </a>
       </div>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+      </div>
+
       <div class="nav-right">
-        <button class="theme-toggle" aria-label="Toggle theme"></button>
-        <div class="profile-section active">
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="courses.html" class="nav-link active">Courses</a>
-          <div class="profile-avatar" title="Profile menu">
-            U
-            <div class="profile-dropdown">
-              <a href="profile.html" class="dropdown-item">Profile</a>
-              <a href="dashboard.html" class="dropdown-item">Dashboard</a>
-              <a href="courses.html" class="dropdown-item">My Courses</a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
-            </div>
-          </div>
+        <div class="nav-auth">
+          <a href="login.html" class="login-btn">Login</a>
+          <a href="signup.html" class="signup-btn">Sign Up</a>
         </div>
-        <div class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
+
+        <div class="profile-section">
+          <div class="profile-avatar">U</div>
+          <div class="profile-dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">My Courses</a>
+            <hr>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
         </div>
       </div>
     </div>
   </nav>
-  <div class="mobile-nav">
-    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
-    <a href="courses.html" class="mobile-nav-link active">Courses</a>
-    <a href="profile.html" class="mobile-nav-link">Profile</a>
-    <div class="dropdown-divider" style="margin:8px 0;"></div>
-    <a href="#" class="mobile-nav-link" id="mobileLogoutBtn" style="color:#ef4444;">Logout</a>
-  </div>
+
   <div class="lesson-page">
+
     <aside class="lesson-sidebar">
-      <div class="sidebar-header">
-        <h2>C Programming</h2>
-        <p>24 Lessons &middot; 75% Complete</p>
+      <div class="sidebar-header" id="sidebarHeader">
+        <h2>Loading...</h2>
+        <p>Please wait</p>
       </div>
-      <div class="lesson-list">
-        <div class="lesson-item completed">
-          <div class="lesson-number">1</div>
-          <div class="lesson-info">
-            <h4>Introduction to C</h4>
-            <span>History & Setup</span>
-          </div>
-          <span class="lesson-duration">8 min</span>
-        </div>
-        <div class="lesson-item completed">
-          <div class="lesson-number">2</div>
-          <div class="lesson-info">
-            <h4>Variables & Data Types</h4>
-            <span>int, float, char, double</span>
-          </div>
-          <span class="lesson-duration">12 min</span>
-        </div>
-        <div class="lesson-item completed">
-          <div class="lesson-number">3</div>
-          <div class="lesson-info">
-            <h4>Operators</h4>
-            <span>Arithmetic, Logical, Bitwise</span>
-          </div>
-          <span class="lesson-duration">10 min</span>
-        </div>
-        <div class="lesson-item completed">
-          <div class="lesson-number">4</div>
-          <div class="lesson-info">
-            <h4>Control Flow</h4>
-            <span>if, else, switch</span>
-          </div>
-          <span class="lesson-duration">15 min</span>
-        </div>
-        <div class="lesson-item active">
-          <div class="lesson-number">5</div>
-          <div class="lesson-info">
-            <h4>Loops in C</h4>
-            <span>for, while, do-while</span>
-          </div>
-          <span class="lesson-duration">18 min</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-number">6</div>
-          <div class="lesson-info">
-            <h4>Functions</h4>
-            <span>Declaration & Definition</span>
-          </div>
-          <span class="lesson-duration">20 min</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-number">7</div>
-          <div class="lesson-info">
-            <h4>Arrays</h4>
-            <span>1D & 2D Arrays</span>
-          </div>
-          <span class="lesson-duration">16 min</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-number">8</div>
-          <div class="lesson-info">
-            <h4>Strings</h4>
-            <span>Character Arrays & Functions</span>
-          </div>
-          <span class="lesson-duration">14 min</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-number">9</div>
-          <div class="lesson-info">
-            <h4>Pointers</h4>
-            <span>Basics & Arithmetic</span>
-          </div>
-          <span class="lesson-duration">22 min</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-number">10</div>
-          <div class="lesson-info">
-            <h4>Structures</h4>
-            <span>struct, typedef, unions</span>
-          </div>
-          <span class="lesson-duration">18 min</span>
-        </div>
+
+      <div class="lesson-list" id="lessonList">
       </div>
     </aside>
-    <button class="sidebar-toggle" aria-label="Toggle lesson sidebar">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-      </svg>
-    </button>
+
     <main class="lesson-main">
       <nav class="lesson-breadcrumb">
         <a href="courses.html">Courses</a>
         <span>/</span>
-        <a href="courses.html">C Programming</a>
-        <span>/</span>
-        <span class="current">Loops in C</span>
+        <span class="current" id="breadcrumbTitle">Loading...</span>
       </nav>
-      <article class="lesson-content">
-        <h1>Loops in C</h1>
-        <div class="lesson-meta">
-          <span>Module 5</span>
-          <span>&middot;</span>
-          <span>18 min read</span>
-          <span>&middot;</span>
-          <span>Intermediate</span>
-        </div>
-        <p>
-          Loops are one of the most fundamental concepts in programming. They allow you to execute a block of code multiple times, which is essential for tasks like processing arrays, reading data, and implementing algorithms.
-        </p>
-        <p>
-          In C, there are three main types of loops: <strong>for</strong>, <strong>while</strong>, and <strong>do-while</strong>. Each has its own use case and syntax, and understanding when to use each is key to writing efficient code.
-        </p>
-        <h2>The for Loop</h2>
-        <p>
-          The <code>for</code> loop is the most commonly used loop in C. It's ideal when you know exactly how many times you want to iterate.
-        </p>
-        <div class="lesson-code">
-          <pre><span class="comment">// Print numbers 1 to 5</span>
-<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i <= 5; i++) {
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, i);
-}</pre>
-        </div>
-        <h2>The while Loop</h2>
-        <p>
-          The <code>while</code> loop is used when you want to repeat a block of code as long as a condition is true. It's useful when you don't know the exact number of iterations beforehand.
-        </p>
-        <div class="lesson-code">
-          <pre><span class="comment">// Print numbers 1 to 5</span>
-<span class="keyword">int</span> i = 1;
-<span class="keyword">while</span> (i <= 5) {
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, i);
-    i++;
-}</pre>
-        </div>
-        <h2>The do-while Loop</h2>
-        <p>
-          The <code>do-while</code> loop is similar to the while loop, but it guarantees that the code block executes at least once before checking the condition.
-        </p>
-        <div class="lesson-code">
-          <pre><span class="comment">// Print numbers 1 to 5</span>
-<span class="keyword">int</span> i = 1;
-<span class="keyword">do</span> {
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, i);
-    i++;
-} <span class="keyword">while</span> (i <= 5);</pre>
-        </div>
-        <h2>Key Differences</h2>
-        <ul>
-          <li><strong>for loop:</strong> Best for known iteration counts, compact syntax.</li>
-          <li><strong>while loop:</strong> Best when condition depends on external factors.</li>
-          <li><strong>do-while loop:</strong> Best when you need at least one execution.</li>
-        </ul>
-        <p>
-          Practice these loops with the exercises below, and don't hesitate to ask the AI assistant if you have any doubts!
-        </p>
+
+      <article class="lesson-content" id="lessonContent">
+        <h1>Loading lesson...</h1>
       </article>
-      <div class="lesson-nav-buttons">
-        <a href="#" class="btn btn-secondary">← Previous Lesson</a>
-        <a href="#" class="btn btn-primary">Next Lesson →</a>
-      </div>
     </main>
+
     <aside class="ai-panel">
       <div class="ai-panel-header">
-        <h3>
-          <span class="ai-status"></span>
-          AI Assistant
-        </h3>
-        <button class="ai-panel-toggle" aria-label="Close AI panel">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
+        <h3>AI Assistant</h3>
       </div>
       <div class="ai-chat"></div>
       <div class="ai-input-area">
-        <div class="ai-input-wrapper">
-          <textarea class="ai-input" placeholder="Ask anything about this lesson..." rows="1"></textarea>
-          <button class="ai-send-btn" aria-label="Send message">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12z"/>
-            </svg>
-          </button>
-        </div>
+        <textarea class="ai-input"></textarea>
+        <button class="ai-send-btn">Send</button>
       </div>
     </aside>
+
   </div>
-  <button class="sidebar-toggle ai-toggle-btn" style="left:auto;right:24px;background:var(--accent-gradient);" aria-label="Toggle AI panel">
-    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/>
-    </svg>
-  </button>
+
+  <!-- script.js handles auth, AI panel, navigation, and lesson rendering -->
   <script src="js/script.js"></script>
+
 </body>
 </html>

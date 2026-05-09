@@ -11,26 +11,67 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="logo">CodePath</a>
+
+      <div class="logo">
+        <img src="logo.jpg" alt="">
+      </div>
       <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
         <a href="courses.html" class="nav-link">Courses</a>
         <a href="index.html#about" class="nav-link">About Us</a>
         <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
       </div>
+
       <div class="nav-right">
-        <button class="theme-toggle" aria-label="Toggle theme"></button>
-        <div class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
+
+
+
+        <!-- Login Signup -->
+        <div class="nav-auth">
+          <a href="login.html" class="login-btn">Login</a>
+          <a href="signup.html" class="signup-btn">Sign Up</a>
         </div>
+
+        <!-- Profile -->
+        <div class="profile-section">
+          <div class="profile-avatar">U</div>
+
+          <div class="profile-dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">My Courses</a>
+            <hr>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </div>
+
       </div>
+      <!-- MOBILE MENU BUTTON -->
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
     </div>
   </nav>
+
+  <!-- MOBILE NAV -->
   <div class="mobile-nav">
-    <a href="courses.html" class="mobile-nav-link">Courses</a>
-    <a href="index.html#about" class="mobile-nav-link">About Us</a>
-    <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <hr>
+   
   </div>
   <main class="auth-page">
     <div class="auth-card">

@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0f172a">
-  <meta name="description" content="CodePath - AI-powered coding learning platform. Level up your coding skills with intelligent doubt solving and structured courses.">
+  <meta name="description"
+    content="CodePath - AI-powered coding learning platform. Level up your coding skills with intelligent doubt solving and structured courses.">
   <title>CodePath - AI-Powered Coding Learning Platform</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+
 <body>
 
-  <!-- ==================== NAVBAR ==================== -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="logo">CodePath</a>
-      <div class="nav-links">
-        <a href="course1.html" class="nav-link">Courses</a>
-        <a href="#about" class="nav-link">About Us</a>
-        <a href="#contact" class="nav-link">Contact</a>
+
+      <div class="logo">
+        <a href="index.html">
+          
+          <img src="logo.jpg" alt="">
+        </a>
       </div>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="index.html#about" class="nav-link">About Us</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+      </div>
+
       <div class="nav-right">
-        <button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode"></button>
+
+
+
+        <!-- LOGIN / SIGNUP -->
         <div class="nav-auth">
-          <a href="login.html" class="btn btn-ghost">Login</a>
-          <a href="signup.html" class="btn btn-primary">Signup</a>
+          <a href="login.html" class="login-btn">Login</a>
+          <a href="signup.html" class="signup-btn">Sign Up</a>
         </div>
+
+        <!-- PROFILE -->
         <div class="profile-section">
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="courses.html" class="nav-link">Courses</a>
-          <div class="profile-avatar" title="Profile menu">
-            U
-            <div class="profile-dropdown">
-              <a href="profile.html" class="dropdown-item">Profile</a>
-              <a href="dashboard.html" class="dropdown-item">Dashboard</a>
-              <a href="courses.html" class="dropdown-item">My Courses</a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
-            </div>
+          <div class="profile-avatar">U</div>
+
+          <div class="profile-dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">My Courses</a>
+            <hr>
+            <a href="#" id="logoutBtn">Logout</a>
           </div>
         </div>
-        <div class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+
       </div>
+
+      <!-- MOBILE MENU BUTTON -->
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
     </div>
   </nav>
 
+  <!-- MOBILE NAV -->
   <div class="mobile-nav">
-    <a href="courses.html" class="mobile-nav-link">Courses</a>
-    <a href="#about" class="mobile-nav-link">About Us</a>
-    <a href="#contact" class="mobile-nav-link">Contact</a>
-    <div class="dropdown-divider" style="margin: 8px 0;"></div>
-    <a href="login.html" class="mobile-nav-link mobile-auth-link">Login</a>
-    <a href="signup.html" class="mobile-nav-link mobile-auth-link">Signup</a>
-    <a href="dashboard.html" class="mobile-nav-link mobile-user-link" style="display:none;">Dashboard</a>
-    <a href="courses.html" class="mobile-nav-link mobile-user-link" style="display:none;">My Courses</a>
-    <a href="profile.html" class="mobile-nav-link mobile-user-link" style="display:none;">Profile</a>
-    <a href="#" class="mobile-nav-link mobile-user-link" style="display:none; color:#ef4444;" id="mobileLogoutBtn">Logout</a>
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <hr>
+    <a href="#" class="mobile-nav-link mobile-user-link" style="display:none; color:#ef4444;"
+      id="mobileLogoutBtn">Logout</a>
   </div>
 
   <!-- ==================== HERO SECTION ==================== -->
@@ -77,8 +98,12 @@
         Level Up Your<br>
         <span class="gradient-text">Coding Skills</span> 🚀
       </h1>
+      <h3>
+                <span id="typing"></span>
+                <span> with AI Assistant</span>
+            </h3>
       <p class="hero-subtitle">
-        Master programming with an AI-powered learning platform that adapts to your pace. 
+        Master programming with an AI-powered learning platform that adapts to your pace.
         Get instant doubt solving, practice with real questions, and track your progress.
       </p>
       <div class="hero-buttons">
@@ -100,46 +125,58 @@
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
           </svg>
         </div>
         <h3 class="feature-title">AI Doubt Solver</h3>
         <p class="feature-desc">
-          Stuck on a concept? Our AI assistant provides instant, contextual help right inside your learning environment. No more waiting for answers.
+          Stuck on a concept? Our AI assistant provides instant, contextual help right inside your learning environment.
+          No more waiting for answers.
         </p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
           </svg>
         </div>
         <h3 class="feature-title">Practice Questions</h3>
         <p class="feature-desc">
-          Reinforce your learning with curated coding exercises. From beginner to advanced, each question is designed to build real problem-solving skills.
+          Reinforce your learning with curated coding exercises. From beginner to advanced, each question is designed to
+          build real problem-solving skills.
         </p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a3 3 0 01-3 3m3-3a3 3 0 00-3 3m3-3v.75m-5.007.75h5.007m-5.007 0v.75m5.007-.75v-.75m-5.007.75v-.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a3 3 0 01-3 3m3-3a3 3 0 00-3 3m3-3v.75m-5.007.75h5.007m-5.007 0v.75m5.007-.75v-.75m-5.007.75v-.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
         <h3 class="feature-title">Leaderboard System</h3>
         <p class="feature-desc">
-          Compete with fellow learners, earn points, and climb the ranks. Gamification makes learning addictive and fun while tracking your growth.
+          Compete with fellow learners, earn points, and climb the ranks. Gamification makes learning addictive and fun
+          while tracking your growth.
         </p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
           </svg>
         </div>
         <h3 class="feature-title">Progress Tracking</h3>
         <p class="feature-desc">
-          Visual dashboards show exactly where you stand. Track completed lessons, quiz scores, and skill milestones to stay motivated on your journey.
+          Visual dashboards show exactly where you stand. Track completed lessons, quiz scores, and skill milestones to
+          stay motivated on your journey.
         </p>
       </div>
     </div>
@@ -152,15 +189,21 @@
         <span class="section-label">About Us</span>
         <h2 class="section-title">Learn Smarter, Not Harder</h2>
         <p>
-          CodePath was built with one mission: to make coding education accessible, engaging, and effective for everyone. Whether you're a complete beginner or looking to sharpen your skills, our platform adapts to your learning style.
+          CodePath was built with one mission: to make coding education accessible, engaging, and effective for
+          everyone. Whether you're a complete beginner or looking to sharpen your skills, our platform adapts to your
+          learning style.
         </p>
         <p>
-          What sets us apart is our real-time AI support. Unlike traditional platforms where you wait hours for help, CodePath's intelligent assistant is always available to explain concepts, debug code, and guide you through complex problems.
+          What sets us apart is our real-time AI support. Unlike traditional platforms where you wait hours for help,
+          CodePath's intelligent assistant is always available to explain concepts, debug code, and guide you through
+          complex problems.
         </p>
         <div class="about-highlight">
           <div class="about-highlight-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2" width="20" height="20">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
             </svg>
           </div>
           <div class="about-highlight-text">
@@ -176,9 +219,9 @@
             <span class="comment">// Ask the AI: "Explain recursion"</span><br><br>
             <span class="keyword">function</span> <span class="function">factorial</span>(n) {<br>
             &nbsp;&nbsp;<span class="keyword">if</span> (n <= 1) <span class="keyword">return</span> 1;<br>
-            &nbsp;&nbsp;<span class="keyword">return</span> n * <span class="function">factorial</span>(n - 1);<br>
-            }<br><br>
-            <span class="comment">// AI explains: "A function calls itself..."</span>
+              &nbsp;&nbsp;<span class="keyword">return</span> n * <span class="function">factorial</span>(n - 1);<br>
+              }<br><br>
+              <span class="comment">// AI explains: "A function calls itself..."</span>
           </div>
         </div>
       </div>
@@ -186,13 +229,48 @@
   </section>
 
   <!-- ==================== CTA SECTION ==================== -->
-  <section class="section cta-section" id="contact">
-    <div class="cta-card">
-      <h2 class="cta-title">Start Your Coding Journey Today</h2>
-      <p class="cta-desc">
-        Join thousands of learners who are already mastering code with AI-powered guidance. Your first lesson is free.
-      </p>
-      <a href="signup.html" class="btn btn-primary cta-btn">Get Started for Free</a>
+  <section class="section team-section" id="team">
+    <div class="team-container">
+
+      <!-- IMAGES -->
+      <div class="team-images">
+        <img src="champs.jpg" alt="Your Photo" class="team-img">
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="team-content">
+        <h2 class="team-title">Meet the Creators</h2>
+
+        <p class="team-desc">
+          Hi, we are <b>Nipeksh Pal</b> and <b>Nakul Goel</b>, currently studying in
+          <b>B.Tech(2nd Year)/CSE</b>. We are passionate about coding and building
+          projects that make learning simple and interactive.
+        </p>
+
+        <p class="team-desc">
+          Through this platform, we aim to help students learn coding with real-world
+          projects and AI-powered support.
+        </p>
+
+        <!-- CONTACT -->
+        <div class="team-contact">
+          <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=codepathacademy67@gmail.com"
+              target="_blank">codepathacademy67@gmail.com</a>
+          </p>
+
+          <p><a href="https://www.linkedin.com/in/nakul-goel-253abb32b" target="_blank">👉 NAKUL Goel on
+              LinkedIn →</a></p>
+          <p><a href="https://www.linkedin.com/in/nipeksh-pal-845891326 " target="_blank">👉 NIPEKSH Pal on
+              LinkedIn →</a></p>
+          <div class="linkd_in">
+            <p class="linkdin">Let's Connect on</p>
+            <img src="linkdin.png" alt="" class="logo1">
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -202,7 +280,8 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="logo">CodePath</a>
-          <p>AI-powered learning platform designed to help you master coding through intelligent, personalized education.</p>
+          <p>AI-powered learning platform designed to help you master coding through intelligent, personalized
+            education.</p>
         </div>
         <div class="footer-links">
           <div class="footer-column">
@@ -222,17 +301,20 @@
             <div class="footer-social">
               <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                 </svg>
               </a>
               <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
               </a>
               <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                  <path
+                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg>
               </a>
             </div>
@@ -245,7 +327,56 @@
       </div>
     </div>
   </footer>
+<script>
+        const texts = [
+            "Learn C",
+            "Learn C++",
+            "Learn Python",
+            "Learn Java",
+            "Learn Web Development"
+        ];
 
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        const el = document.getElementById("typing");
+
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const delayBetweenWords = 1000;
+
+        function typeEffect() {
+            if (!el) return;
+
+            const currentText = texts[textIndex];
+
+            if (!isDeleting) {
+                // typing
+                el.textContent = currentText.substring(0, charIndex++);
+
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, delayBetweenWords);
+                    return;
+                }
+            } else {
+                // deleting
+                el.textContent = currentText.substring(0, charIndex--);
+
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+
+            setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
+        }
+
+        typeEffect();
+
+    </script>
   <script src="js/script.js"></script>
 </body>
+
 </html>

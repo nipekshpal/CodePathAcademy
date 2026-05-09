@@ -11,41 +11,71 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="index.html" class="logo">CodePath</a>
-      <div class="nav-links">
-        <a href="courses.html" class="nav-link active">Courses</a>
-        <a href="index.html#about" class="nav-link">About Us</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" aria-label="Toggle theme"></button>
-        <div class="profile-section active">
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="courses.html" class="nav-link active">Courses</a>
-          <div class="profile-avatar" title="Profile menu">
-            U
-            <div class="profile-dropdown">
-              <a href="profile.html" class="dropdown-item">Profile</a>
-              <a href="dashboard.html" class="dropdown-item">Dashboard</a>
-              <a href="courses.html" class="dropdown-item">My Courses</a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+   <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+
+            <div class="logo">
+              <a href="index.html">
+
+                <img src="logo.jpg" alt="">
+              </a>
             </div>
-          </div>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="index.html#about" class="nav-link">About Us</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+            </div>
+
+            <div class="nav-right">
+
+
+
+                <!-- LOGIN / SIGNUP -->
+                <div class="nav-auth">
+                    <a href="login.html" class="login-btn">Login</a>
+                    <a href="signup.html" class="signup-btn">Sign Up</a>
+                </div>
+
+                <!-- PROFILE -->
+                <div class="profile-section">
+                    <div class="profile-avatar">U</div>
+
+                    <div class="profile-dropdown">
+                        <a href="profile.html">Profile</a>
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="courses.html">My Courses</a>
+                        <hr>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- MOBILE MENU BUTTON -->
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
-        <div class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
         </div>
-      </div>
-    </div>
-  </nav>
-  <div class="mobile-nav">
-    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
-    <a href="courses.html" class="mobile-nav-link active">Courses</a>
-    <a href="profile.html" class="mobile-nav-link">Profile</a>
-    <div class="dropdown-divider" style="margin:8px 0;"></div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <hr>
     <a href="#" class="mobile-nav-link" id="mobileLogoutBtn" style="color:#ef4444;">Logout</a>
   </div>
   <main class="courses-page">
