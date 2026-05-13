@@ -26,18 +26,18 @@ const { sendSuccess } = require("./utils/apiResponse");
 
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://127.0.0.1:5500,http://localhost:5500"
+  "http://127.0.0.1:5500,http://localhost:5500,https://code-path-frontend-git-main-nipeksh-pal-s-projects.vercel.app/" 
 )
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+.split(",")
+.map((origin) => origin.trim())
+.filter(Boolean);
 
 app.use(cors({
   origin(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-
+    
     return callback(new Error(`CORS blocked for origin: ${origin}`));
   },
   credentials: true
@@ -77,6 +77,8 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
